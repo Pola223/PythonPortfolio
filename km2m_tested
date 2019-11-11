@@ -1,0 +1,47 @@
+# Function with tests
+# Excercise from: http://python.astrotech.io/basics/function/doctest.html
+def kilometers_to_meters(kilometers):
+    """
+    >>>kilometers_to_meters(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Argument must be a positive number
+
+    >>>kilometers_to_meters(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Argument must be a positive number
+
+    >>>kilometers_to_meters(1)
+    1000.0
+
+    >>>kilometers_to_meters(1.78)
+    1780.0
+
+    >>>kilometers_to_meters(3)
+    3000.0
+
+    >>>kilometers_to_meters('one')
+    Traceback (most recent call last):
+        ...
+    ValueError: Argument must be numeral
+
+    >>>kilometers_to_meters((91, 3, 2.9))
+    Traceback (most recent call last):
+        ...
+    ValueError: Argument must be numeral
+
+    >>>kilometers_to_meters(True)
+    Traceback (most recent call last):
+        ...
+    ValueError: Argument must be numeral
+    """
+    if not isinstance(kilometers, (float, int)):
+        raise ValueError('Argument must be numeral')
+
+    if kilometers <= 0:
+        raise ValueError('Argument must be a positive number')
+
+    return float(kilometers*1000)
+
+print('\nKilometers to meters: ',kilometers_to_meters(4))
