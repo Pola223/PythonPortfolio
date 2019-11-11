@@ -1,5 +1,6 @@
 # Scale of grades, grades and gpa
 # You can input your grades and when you'll hit enter it'll calculate your grades mean and show grades
+# excercise from: http://python.astrotech.io/basics/loop/while.html
 INPUT = (2, 3, 3.5, 4, 4.5, 5)
 SCALE = list(INPUT)
 
