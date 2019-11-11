@@ -1,0 +1,72 @@
+# Legit conversion from numbers to gramatically correct English
+TO_TEXT_FORM = [1969, 147.7856, 11.85, 56.14789, -3100.1, -31.337, -49.00001]
+DIGITS = ["zero", "one", "two", "tree", "four", "five", "six", "seven", "eight", "nine"]
+TENS = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+LESS_THAN_HUNDRED = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+
+
+def convert_to_speech_3(three_digits_number, written):
+    hundreds = int(three_digits_number/100)
+    tens = int(three_digits_number/10) - hundreds*10
+    numerals = int(three_digits_number) - tens*10 - hundreds*100
+    if hundreds > 0:
+        written += DIGITS[hundreds] + ' hundred'
+        written += 's ' if hundreds > 1 else ' '
+
+    if tens > 1:
+        written += LESS_THAN_HUNDRED[tens-2]+ ' '
+    elif tens == 1:
+        written += TENS[numerals] + ' '
+
+    if numerals > 0 and (tens is not 1):
+        written += DIGITS[numerals] + ' '
+
+    return written
+
+
+def convert_upto_6(number, written):
+    first_three_digits = abs(int(number/1000))
+
+    if first_three_digits >= 1:
+        written = convert_to_speech_3(first_three_digits, written)
+        if first_three_digits > 1:
+            written += 'thousands '
+        else:
+            written += 'thousand '
+
+    three_digits = int(abs(number) - first_three_digits*1000)
+    written = convert_to_speech_3(three_digits, written)
+    return written
+
+
+def convert_to_speech(number):
+    written: str = ''
+
+    if number < 0:
+        written = 'minus '
+
+    written = convert_upto_6(number, written)
+
+    #decimals
+    if type(number) == float:
+        written += 'and '
+        decimals_string = str(number).split('.')
+        decimals = int(decimals_string[1])
+        written = convert_upto_6(decimals, written)
+        if len(decimals_string[1]) == 5:
+            written += ('hundred-thousanth\'s ' if int(decimals_string[1]) > 1 else 'hundred-thousanth ')
+        elif len(decimals_string[1]) == 4:
+            written += ('ten-thousanth\'s' if int(decimals_string[1]) > 1 else 'ten-thousanth')
+        elif len(decimals_string[1]) == 3:
+            written += ('thousanth\'s' if int(decimals_string[1]) > 1 else 'thousanth')
+        elif len(decimals_string[1]) == 2:
+            written += ('hundreth\'s' if int(decimals_string[1]) > 1 else 'hundreth')
+        else:
+            written += ('tenth\'s' if int(decimals_string[1]) > 1 else 'tenth')
+
+    return written
+
+
+print('\n\n\nConverting numbers written with numerals to written with letters: ')
+for i in TO_TEXT_FORM:
+    print(i, 'converted to words is: ', convert_to_speech(i))
