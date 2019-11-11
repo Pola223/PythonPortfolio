@@ -1,4 +1,6 @@
 # Legit conversion from numbers to gramatically correct English
+# Converts numbers up to 6 figures and down to 5 decimal figues
+# Excercise comes from site: http://python.astrotech.io/basics/function/basic.html#assignments
 TO_TEXT_FORM = [1969, 147.7856, 11.85, 56.14789, -3100.1, -31.337, -49.00001]
 DIGITS = ["zero", "one", "two", "tree", "four", "five", "six", "seven", "eight", "nine"]
 TENS = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
