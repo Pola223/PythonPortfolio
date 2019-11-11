@@ -1,0 +1,27 @@
+# Scale of grades, grades and gpa
+# You can input your grades and when you'll hit enter it'll calculate your grades mean and show grades
+INPUT = (2, 3, 3.5, 4, 4.5, 5)
+SCALE = list(INPUT)
+
+print(f'Grading scale: {SCALE}')
+grades = []
+
+while True:
+    given = input('Please enter your grade: ')
+
+    if not given:
+        break
+
+    grade = float(given)
+    if grade in SCALE:
+        grades.append(grade)
+    else:
+        print('Grade is not allowed')
+
+if grades:
+    print(f'Your grades: {grades}')
+    gpa = round(sum(grades)/len(grades), 2)
+    print(f'Your GPA is: {gpa}')
+else:
+    print('You have no grades yet')
+    
