@@ -1,0 +1,41 @@
+# Arabic to roman
+# Converts every arabic int from 0 to 100 into roman number
+# Exceercise from: http://python.astrotech.io/basics/function/basic.html#assignments
+roman_num_dict = {'I' : 1,
+    'V' : 5,
+    'X' : 10,
+    'L' : 50,
+    'C' : 100,
+    'D' : 500,
+    'M' : 1000,}
+keys = list(roman_num_dict.values())
+values = list(roman_num_dict.keys())
+nums_dict_arabic2roman = dict(zip(keys, values))  # dict 'arabic':roman
+
+
+def arabic_2_roman(number: int):
+    roman = ''
+
+    for index in range(len(keys)):
+        biggest_arabic_fitting_in = keys[len(keys)-index-1]
+        if number==0:
+            break
+
+        while number - biggest_arabic_fitting_in >= 0:
+            roman += nums_dict_arabic2roman[biggest_arabic_fitting_in]
+            number -= biggest_arabic_fitting_in
+
+        if roman.count(nums_dict_arabic2roman[biggest_arabic_fitting_in]) > 3:
+            string_of_four = nums_dict_arabic2roman[biggest_arabic_fitting_in]*4
+            bigger_arabic = keys[len(keys)-index]
+            correct_string = nums_dict_arabic2roman[biggest_arabic_fitting_in]+nums_dict_arabic2roman[bigger_arabic]
+            roman = roman.replace(string_of_four, correct_string)
+            if 'VIV' in roman:
+                roman = roman.replace('VIV', 'IX')
+            if 'LXL' in roman:
+                roman = roman.replace('LXL', 'XC')
+    return roman
+
+
+for i in range(101):
+    print(i, arabic_2_roman(i))
