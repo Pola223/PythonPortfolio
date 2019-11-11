@@ -1,5 +1,6 @@
 # Conversion of roman numerals to integers
 # Works on integers from 0 to 3888 (or to MMMDCCCLXXXVIII)
+# Excercise from: http://python.astrotech.io/basics/function/basic.html#assignments
 roman_num_dict = {'I' : 1,
     'V' : 5,
     'X' : 10,
