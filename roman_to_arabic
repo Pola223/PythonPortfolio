@@ -1,0 +1,28 @@
+# Conversion of roman numerals to integers
+# Works on integers from 0 to 3888 (or to MMMDCCCLXXXVIII)
+roman_num_dict = {'I' : 1,
+    'V' : 5,
+    'X' : 10,
+    'L' : 50,
+    'C' : 100,
+    'D' : 500,
+    'M' : 1000,}
+
+def roman_numerals_to_integers(my_string):
+    roman = my_string.upper()
+    rough = []
+
+    for letter in roman:
+        rough.append(roman_num_dict[letter])
+
+    number_in_arabic = rough[0]
+    for i in range(len(rough)-1):
+        if rough[i] >= rough[i+1]:
+            number_in_arabic += rough[i+1]
+        else:
+            number_in_arabic += rough[i+1] - 2*rough[i]
+
+    return number_in_arabic
+
+
+print(roman_numerals_to_integers('cxliv'))  #144
