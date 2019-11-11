@@ -1,0 +1,38 @@
+# Cleaning input(street names)
+# It prints names of streets without unnecessary additions
+# Excercise from http://python.astrotech.io/basics/character/str-methods.html#assignments
+
+from typing import List
+
+INPUT: List[str] = [
+
+    'UL. Zygmunta III WaZY',
+    '  bolesława chrobrego ',
+    'ul Jana III SobIESkiego',
+    '\tul. Jana trzeciego Sobieskiego',
+    'ulicaJana III Sobieskiego',
+    'UL. JA\tNA 3 SOBIES  KIEGO',
+    'ULICA JANA III SOBIESKIEGO  ',
+    'ULICA. JANA III SOBIeskieGO',
+    ' Jana 3 Sobieskiego  ',
+    'Jana III Sobi\teskiego ',
+    'ul.Mieszka II',
+]
+
+
+def clean_input(text:str) -> str:
+    text = text.replace('\t', '')
+    text = text.upper()
+    text = text.strip('UL')
+    text = text.replace('ICA', '')
+    text = text.strip('.')
+    text = text.replace('TRZECIEGO', 'III').replace('3', 'III')
+    text = text.replace('SOBIES  KIEGO', 'SOBIESKIEGO')
+    text = text.strip()
+    text = text.title()
+    text = text.replace('Iii', 'III')
+    text = text.replace('Ii', 'II')
+    return text
+
+for name in INPUT:
+    print(clean_input(name))
