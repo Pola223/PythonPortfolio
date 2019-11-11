@@ -1,4 +1,5 @@
 # Translating numbers to pilots language
+# Excercise from http://python.astrotech.io/basics/function/basic.html#assignments
 # It prints all the numbers as a pilot would say it
 TO_TRANSLATE = [1969, 785425, 17.17, 12.7, -194, -87.112, -38.17]
 PILOTS_LANGUAGE = ["zero", "one", "two", "tree", "fower", "fife", "six", "seven", "ait", "niner"]
