@@ -1,0 +1,13 @@
+import urllib.request
+import bs4 as bs    # beautiful_soup
+
+def printing_all_articles_titles():
+    url = 'https://www.nytimes.com/'
+    source = urllib.request.urlopen(url).read()
+    soup = bs.BeautifulSoup(source, 'lxml')
+
+    for title in soup.find_all('h2'):
+        print(title.text)
+        
+if __name__ == '__main__':
+    printing_all_articles_titles()
