@@ -1,0 +1,30 @@
+import random
+import string
+
+
+def cows_and_bulls():
+    number_to_guess = str(random.randint(1000, 10000))
+    print('Cow - right number on the right place, bull - right number in the wrong place')
+    print('Try to guess what number was generated:')
+
+    abort = False
+
+    while abort == False:
+        cows, bulls = 0, 0
+
+        guess = input()
+        for index_letter in range(len(guess)):
+            if guess[index_letter] == number_to_guess[index_letter]:
+                cows += 1
+                if cows == 4:
+                    print('You won!')
+                    abort = True
+                continue
+            elif guess[index_letter] in number_to_guess:
+                bulls += 1
+
+        print(f'Cows: {cows}, bulls: {bulls}')
+        
+        
+if __name__ == '__main__':
+    cows_and_bulls()
